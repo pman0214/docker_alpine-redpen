@@ -1,0 +1,64 @@
+<!-- variantをzenkaku2にすると「．」「，」の文章のチェックになる -->
+<redpen-conf lang="ja" variant="zenkaku2">
+    <validators>
+        <!-- 文の長さ <= 100文字以上？ -->
+        <validator name="SentenceLength">
+            <property name="max_len" value="100" />
+        </validator>
+        <!-- 不正な単語は無い？ -->
+        <validator name="InvalidWord">
+            <property name="dict" value="redpen-invalid-words.txt" />
+        </validator>
+        <!-- カンマの数 <= 3つ？ -->
+        <validator name="CommaNumber" />
+        <!-- 不正な記号が使われていない？（記号定義はsymbolsブロック） -->
+        <validator name="InvalidSymbol" />
+        <!-- 長音で終わるカタカナは無い？ -->
+        <validator name="KatakanaEndHyphen" />
+        <!-- カタカナ語の表記ゆれは無い？ -->
+        <validator name="KatakanaSpellCheck"/>
+        <!-- 1段落の単語数 <= 1000？ -->
+        <validator name="SectionLength" />
+        <!-- section内の段落数 <= 10？ -->
+        <validator name="ParagraphNumber">
+            <property name="max_num" value="10" />
+        </validator>
+        <!-- 同一の単語が連続していない？ -->
+        <validator name="SuccessiveWord" />
+        <!-- 類似するsectionは存在しない？ -->
+        <validator name="DuplicatedSection" />
+        <!-- ですます調とである調が混在してない？ -->
+        <validator name="JapaneseStyle"/>
+        <!-- 二重否定は無い？ -->
+        <validator name="DoubleNegative" />
+        <!-- カッコの使用ルールは適切？ -->
+        <validator name="ParenthesizedSentence">
+            <!-- 1文のカッコ数 <= 5？ -->
+            <property name="max_count" value="5" />
+            <!-- カッコのネストレベル <= 2？-->
+            <property name="max_nesting_level" value="2" />
+            <!-- カッコ内の文の長さ <= 20？ -->
+            <property name="max_length" value="20" />
+        </validator>
+        <!-- 半角カタカナを使っていない？ -->
+        <validator name="HankakuKana" />
+        <!-- 長すぎる熟語を使っていない？: 連続する漢字の文字数 <= 8？ -->
+        <validator name="LongKanjiChain">
+            <property name="max_len" value="8" />
+        </validator>
+        <!-- section level <= 3？ -->
+        <validator name="SectionLevel">
+            <property name="max_num" value="3" />
+            </validator>
+            <!-- 曖昧な名詞接続のパターンは無い？ -->
+            <validator name="JapaneseAmbiguousNounConjunction" />
+            <!-- 常用漢字だけ使ってる？ -->
+            <validator name="JapaneseJoyoKanji" />
+            <!-- 数え方は統一されている？ -->
+            <validator name="JapaneseNumberExpression" />
+            <!-- 1段落で同一の文が2回連続使用されていない？ -->
+            <validator name="SuccessiveSentence" />
+            <!-- 「が」を2回使っていない？ -->
+            <validator name="DoubledConjunctiveParticleGa" />
+    </validators>
+</redpen-conf>
